@@ -13,8 +13,11 @@ class URLShort extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
-        'url',
-        'short',
-        'user_id'
+        'user_id',
+        'original_url',
+        'custom_alias',
+        'hash',
+        'short_url',
+        'expiration_date'
     ];
 }

@@ -17,10 +17,14 @@ class CreateUrlTable extends Migration
             $table->engine = 'InnoDB';
             $table->id();
             $table->string('hash');
-            $table->longText('url');
-            $table->string('short', 7)->unique();
-            $table->dateTime('creation_date');
+            $table->longText('original_url');
+            $table->string('short_url', 8)->unique();
+            $table->string('custom_alias')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->dateTime('expiration_date');
+            $table->timestamps();
+
             
         
         });

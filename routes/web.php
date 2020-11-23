@@ -16,9 +16,14 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+Route::group(['middleware' => 'auth'], function () {
 
-Route::get('/short', function(){
-    return view('url.short');
+    Route::get('/short', function(){
+        return view('url.short');
+    });
+    Route::post('/short', 'App\Http\Controllers\URL\UrlController@short');
+    Route::get('/short/{link}', 'App\Http\Controllers\URL\UrlController@shortLink');
+    Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 });
-Route::post('/short', 'App\Http\Controllers\URL\UrlController@short');
-Route::get('/short/{link}', 'App\Http\Controllers\URL\UrlController@shortLink');
