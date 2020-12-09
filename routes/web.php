@@ -27,3 +27,4 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard');
     })->name('dashboard');
 });
+Route::get('/logout', 'App\Http\Controllers\URL\UrlController@logout');
